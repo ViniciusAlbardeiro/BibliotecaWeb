@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+* {  font-family: 'Nunito', sans-serif;  font-size: 14px;}
+
+body { margin:0; padding: 0; }
+
+.sombra{box-shadow: 0 2px 4px 0 rgb(0 0 0 / 10%);}
+
+/* HEADER */
+
+header 
+{ 
+	background-color: #1f7d40;
+	color: #fff;
+	display: flex; 
+	align-items: center; 
+	justify-content: space-around; 
+	gap: 10px;
+	position: sticky;
+	top: 0;
+	z-index: 10;
+}
+
+header .icone { font-size: 30px; position: relative;}
+
+.logo { height: 40px; }
+
+.id-site 
+{ 
+	display:flex; 
+	align-items: center; 
+	gap: 10px;
+	font-family: "Luckiest Guy", cursive;
+    font-size: 32px;
+}
+
+.area-busca 
+{ 
+	display: flex; 
+	width: 50%;
+    height: 40px;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
+    outline: 0;
+    box-sizing: border-box;
+}
+.area-busca select { border:none; box-sizing: border-box; padding: 10px; border-right: thin solid #d1d1d1; }
+.area-busca input {  width: 100%; border:none; box-sizing: border-box; padding: 10px;  }
+.area-busca button { border:none; box-sizing: border-box; padding: 10px; background-color: #fff; cursor: pointer; }
+
+.area-user { display: flex; align-items: center; gap:10px; }
+
+.id-usuario 
+{ 
+	display: flex; 
+	align-items: center; 
+	cursor: pointer; 
+	gap: 10px;
+	box-sizing: border-box;
+    padding: 0px 10px;
+}
+
+.id-usuario.ativo 
+{
+	background-color: #fff;
+    color: #000;
+}
+
+.link-login { font-size: 12px; }
+.link-login:hover { text-decoration: underline; }
+
+.area-icones { display: flex; align-items: center; cursor: pointer; gap: 10px; position: relative;}
+
+/* MAIN */
+
+main { width: 90%; margin:25px auto; min-height: 390px; }
+
+.titulo-secao 
+{ 
+	font-weight: normal;
+    font-size: 18px;
+    color: #fff;
+    background-color: #757474;
+    border-radius: 3px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.area-vermais
+{
+	text-align: right;
+	width: 100%;
+	box-sizing: border-box; 
+	padding: 5px;
+}
+
+.area-vermais button
+{
+	border: thin solid #757474;
+    box-sizing: border-box;
+    padding: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    min-width: 19%;
+}
+
+.livros { display: flex; flex-wrap: wrap; }
+
+.livro 
+{
+	width: 20%;	
+	box-sizing: border-box; 
+	padding: 5px;
+}
+
+.livro > a {
+	text-decoration: none;
+	color: #000;
+}
+.box-livro
+{
+	background-color: #fff;
+	border-radius: 3px; 
+	border:  thin solid #e4e4e4;
+	box-sizing: border-box; 
+	padding: 10px;
+	cursor: pointer;
+
+	position: relative;
+}
+
+.livro img { width: 100%; border-radius: 3px;} 
+
+.livro p { margin-block: 0; padding: 3px 0px; }
+
+.titulo-livro 
+{ 
+	text-align: center;
+	font-weight: bold;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	min-height: 38px;
+}
+
+.autor-livro { font-size: 10px; text-align: center;}
+
+.area-livro { 
+	display: flex;
+	width: 100%;
+}
+
+.local-capa {
+	width: 30%;
+	text-align: center;
+	padding: 0 10px 0 10px;
+}
+
+.local-capa img { width:70%; border-radius: 4px;}
+
+.local-dados-livro{
+	width: 70%;
+}
+
+.local-dados-livro h1
+{
+	font-size: 20px; margin:0;
+}
+
+.local-dados-livro h2
+{
+	font-size: 12px; margin:0; font-weight: normal; font-style: italic;
+}
+
+@media screen and (max-width: 600px)
+{
+	.id-site { margin-top:16px; }
+	.area-busca { width: 90%; }
+	.area-user { justify-content: space-between; width: 80%; }
+	
+	header { flex-direction: column; }
+	
+	.livros { flex-direction: column; align-items: center; }
+	.livro { width: 90%; }
+	
+	.area-icones { position: initial; }
+	.box-livro { display: flex; flex-direction: row; }
+	.box-livro img { width: 30%; }
+	.dados-livro { display: flex; flex-direction: column; }
+	.titulo-livro, .autor-livro { text-align: left; margin-left: 10px;}
+
+	.area-livro {
+		flex-direction: column;
+	}
+
+	.local-capa {
+		width: 100%;
+	}
+
+	.local-dados-livro {
+		width: 100%;
+	}
+
+
+
+}
