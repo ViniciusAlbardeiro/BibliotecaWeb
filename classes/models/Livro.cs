@@ -2,17 +2,17 @@
 
 public class Livro
 {
-    public int Codigo { get; set; };
+    public int Codigo { get; set; }
 
-    public string Isbn { get; set; };
+    public string Isbn { get; set; }
 
-    public string Nome { get; set; };
+    public string Nome { get; set; }
 
-    public int AnoEdicao { get; set; };
+    public int AnoEdicao { get; set; }
 
-    public string Sinopse { get; set; };
+    public string Sinopse { get; set; }
 
-    public Editora Editora { get; set; };
+    public Editora Editora { get; set; }
 
     public Livro() { }
 

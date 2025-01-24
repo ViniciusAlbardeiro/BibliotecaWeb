@@ -24,3 +24,4 @@ public class Autor
 		this.Codigo = codigo;
 		this.Nome = nome;
 	}
+}
