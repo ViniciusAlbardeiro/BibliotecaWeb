@@ -18,12 +18,15 @@ public class CategoriaController
     {
         List<Categoria> lista = new List<Categoria>();
         Banco banco = new Banco();
-        MySqlDataReader reader = banco.Consultar("SELECT * FROM categoria", banco);
+        banco.Conectar();
+        MySqlDataReader reader = banco.Consultar("SELECT * FROM categoria");
         while (reader.Read())
         {
-            Categoria categoria = new Categoria();
-            categoria.Codigo = reader.GetInt32("cd_categoria");
-            categoria.Nome = reader.GetString("nm_categoria");
+            Categoria categoria = new Categoria
+            {
+                Codigo = reader.GetInt32("cd_categoria"),
+                Nome = reader.GetString("nm_categoria")
+            };
             lista.Add(categoria);
         }
         banco.Desconectar();

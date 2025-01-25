@@ -8,14 +8,14 @@ public class Banco
 
     public void Conectar()
     {
-        
+
         try
         {
             string linhaConexao = "SERVER=localhost;USER=root;PASSWORD=Sql201007*;DATABASE=biblioteca";
             conexao = new MySqlConnection(linhaConexao);
             conexao.Open();
         }
-        catch 
+        catch
         {
             throw new Exception("Erro ao conectar ao Servidor");
         }
@@ -32,11 +32,10 @@ public class Banco
         }
     }
 
-    public MySqlDataReader Consultar(string comando, Banco banco)
+    public MySqlDataReader Consultar(string comando)
     {
         try
         {
-           banco.Conectar();
             MySqlCommand cSQL = new MySqlCommand(comando, conexao);
             return cSQL.ExecuteReader();
         }
