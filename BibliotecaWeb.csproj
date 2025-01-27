@@ -258,6 +258,7 @@
   <ItemGroup>
     <Compile Include="classes\base\Banco.cs" />
     <Compile Include="classes\controllers\CategoriaController.cs" />
+    <Compile Include="classes\controllers\LivroController.cs" />
     <Compile Include="classes\models\Autor.cs" />
     <Compile Include="classes\models\Categoria.cs" />
     <Compile Include="classes\models\Editora.cs" />

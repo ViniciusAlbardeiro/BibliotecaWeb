@@ -20,15 +20,13 @@
 		Biblioteca
 	</div>
 	<section class="area-busca sombra">
-		<%--<select>
-			<option value="">Todos</option>
-			<option value="">Educação</option>
-			<option value="">Ciência</option>
-		</select>--%>
-        <asp:DropDownList ID="ddlCategorias" runat="server" >
-        </asp:DropDownList>
+
+        <asp:DropDownList ID="ddlCategorias" runat="server" ></asp:DropDownList>
+
         <input type="text" name="txtFiltro" id="txtFiltro"/>
+
 		<button><img src="images/Buscar.png"/></button>
+
 	</section>
 	<section class="area-user">
 		<div class="id-usuario">
@@ -47,8 +45,12 @@
 	<section>
 		<h1 class="titulo-secao">Nosso acervo</h1>
 		<section class="livros">
+
+			<asp:Literal ID="litListaLivro" runat="server">
+
+			</asp:Literal>
 			
-			<div class="livro">
+			<%--<div class="livro">
 				<a href="livro.html">
 					<div class="box-livro sombra">
 						<img src="images/1.jpg"/>
@@ -70,7 +72,8 @@
 						</div>
 					</div>
 				</a>
-			</div>
+			</div>--%>
+			
 
 			
 		</section>

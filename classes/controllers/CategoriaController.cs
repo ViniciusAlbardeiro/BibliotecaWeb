@@ -29,6 +29,7 @@ public class CategoriaController
             };
             lista.Add(categoria);
         }
+        reader.Close();
         banco.Desconectar();
 
 

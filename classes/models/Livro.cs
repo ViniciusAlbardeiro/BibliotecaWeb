@@ -1,5 +1,7 @@
 ﻿
 
+using System.Collections.Generic;
+
 public class Livro
 {
     public int Codigo { get; set; }
@@ -14,9 +16,11 @@ public class Livro
 
     public Editora Editora { get; set; }
 
+    public List<Autor> Autores { get; set; }
+
     public Livro() { }
 
-    public Livro( int codigo, string isbn, string nome, int ano, string sinopse, Editora editora)
+    public Livro( int codigo, string isbn, string nome, int ano, string sinopse, Editora editora, List<Autor> autores)
     {
         this.Codigo = codigo;
         this.Isbn = isbn;
@@ -24,6 +28,7 @@ public class Livro
         this.AnoEdicao = ano;
         this.Sinopse = sinopse;
         this.Editora = editora;
+        this.Autores = autores;
 
     }
 }
