@@ -43,7 +43,7 @@ namespace BibliotecaWeb
                 }
 
                 litListaLivro.Text += $@"<div class=""livro"">
-                <a href=""livro.html"">
+                <a href=""livro.aspx/?c={livro.Codigo}"">
                  <div class=""box-livro sombra"">
                   <img src=""images/{livro.Codigo}.jpg""/>
                   <div class=""dados-livro"">

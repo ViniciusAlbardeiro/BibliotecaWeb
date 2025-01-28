@@ -190,6 +190,7 @@
     <Content Include="images\nav-sprite-global-1x-hm-dsk-reorg._CB405936659_.png" />
     <Content Include="images\User.png" />
     <Content Include="index.aspx" />
+    <Content Include="livro.aspx" />
     <Content Include="livro.html" />
     <Content Include="obj\Debug\BibliotecaWeb.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\BibliotecaWeb.dll" />
@@ -269,6 +270,13 @@
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="livro.aspx.cs">
+      <DependentUpon>livro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="livro.aspx.designer.cs">
+      <DependentUpon>livro.aspx</DependentUpon>
     </Compile>
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

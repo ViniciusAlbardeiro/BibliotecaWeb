@@ -49,31 +49,6 @@
 			<asp:Literal ID="litListaLivro" runat="server">
 
 			</asp:Literal>
-			
-			<%--<div class="livro">
-				<a href="livro.html">
-					<div class="box-livro sombra">
-						<img src="images/1.jpg"/>
-						<div class="dados-livro">
-							<p class="titulo-livro">Matematica - V. 3 - Geometria Analitica, Numeros Complexos E Polinomio</p>
-							<p class="autor-livro">Regina Giovanni, Jose Ruy Bonjorno</p>
-						</div>
-					</div>
-				</a>
-			</div>
-
-			<div class="livro">
-				<a href="livro.html">
-					<div class="box-livro sombra">
-						<img src="images/6.jpg"/>
-						<div class="dados-livro">
-							<p class="titulo-livro">Letramento de reexistência</p>
-							<p class="autor-livro">Ana Lucia Silva Souza</p>
-						</div>
-					</div>
-				</a>
-			</div>--%>
-			
 
 			
 		</section>

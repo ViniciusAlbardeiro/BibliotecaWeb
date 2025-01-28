@@ -13,6 +13,11 @@
         set { _nome = value; }
     }
     public Editora() { }
+
+    public Editora(string nome) 
+    {
+        this.Nome = nome;
+    }
     public Editora(int codigo, string nome)
     {
         this.Codigo = codigo;

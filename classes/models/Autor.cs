@@ -19,7 +19,12 @@ public class Autor
 
 	public Autor() { }
 
-	public Autor(int codigo, string nome)
+    public Autor(string nome)
+    {
+        this.Nome = nome;
+    }
+
+    public Autor(int codigo, string nome)
 	{
 		this.Codigo = codigo;
 		this.Nome = nome;
