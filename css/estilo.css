@@ -48,6 +48,13 @@ header .icone { font-size: 30px; position: relative;}
 .area-busca select { border:none; box-sizing: border-box; padding: 10px; border-right: thin solid #d1d1d1; }
 .area-busca input {  width: 100%; border:none; box-sizing: border-box; padding: 10px;  }
 .area-busca button { border:none; box-sizing: border-box; padding: 10px; background-color: #fff; cursor: pointer; }
+	.area-busca a {
+		border: none;
+		box-sizing: border-box;
+		padding: 10px;
+		background-color: #fff;
+		cursor: pointer;
+	}
 
 .area-user { display: flex; align-items: center; gap:10px; }
 

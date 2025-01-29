@@ -36,6 +36,7 @@ public class Banco
     {
         try
         {
+            Conectar();
             MySqlCommand cSQL = new MySqlCommand(comando, conexao);
             return cSQL.ExecuteReader();
         }

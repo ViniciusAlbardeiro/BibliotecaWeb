@@ -191,7 +191,6 @@
     <Content Include="images\User.png" />
     <Content Include="index.aspx" />
     <Content Include="livro.aspx" />
-    <Content Include="livro.html" />
     <Content Include="obj\Debug\BibliotecaWeb.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\BibliotecaWeb.dll" />
     <Content Include="obj\Debug\BibliotecaWeb.pdb" />
@@ -254,6 +253,7 @@
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\System.Xml.XPath.XDocument.dll" />
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\vbc.exe" />
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\VBCSCompiler.exe" />
+    <Content Include="resultados.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -280,6 +280,13 @@
     </Compile>
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="resultados.aspx.cs">
+      <DependentUpon>resultados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="resultados.aspx.designer.cs">
+      <DependentUpon>resultados.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="obj\Debug\BibliotecaWeb.csproj.AssemblyReference.cache" />

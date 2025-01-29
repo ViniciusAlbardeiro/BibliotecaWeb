@@ -45,7 +45,7 @@ namespace BibliotecaWeb
 
             /* livro */
             LivroController livroController = new LivroController();
-            Livro livro = livroController.Dados(codigo);
+            Livro livro = livroController.DetalhesLivro(codigo);
 
             string nomesAutores = "";
             foreach (Autor autor in livro.Autores)
