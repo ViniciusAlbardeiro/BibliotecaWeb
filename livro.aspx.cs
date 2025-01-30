@@ -67,5 +67,18 @@ namespace BibliotecaWeb
             
             }
 
+        protected void pesquisar_Click(object sender, EventArgs e)
+        {
+            if (txtFiltro.Text.Trim().Length == 0)
+            {
+                return;
+            }
+            else
+            {
+                Response.Redirect("resultados.aspx?busca=" + txtFiltro.Text);
+                Response.End();
+            }
+        }
+
     }
 }

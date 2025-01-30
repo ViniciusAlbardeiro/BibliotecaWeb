@@ -12,6 +12,7 @@ namespace BibliotecaWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Verifica se o parâmetro de busca existe
             if (Request["busca"] == null)
             {
                 Response.Redirect("");
@@ -19,6 +20,7 @@ namespace BibliotecaWeb
                 return;
             }
 
+            // Verifica se o parâmetro de busca não está vazio
             if (String.IsNullOrEmpty(Request["busca"].ToString()))
             {
                 Response.Redirect("");
@@ -26,13 +28,34 @@ namespace BibliotecaWeb
                 return;
             }
 
-
-
             CarregarCategorias();
             CarregarPesquisaLivro();
-
         }
 
+        // Evento de clique do botão de pesquisa
+        protected void pesquisar_Click(object sender, EventArgs e)
+        {
+            string urlcaminho = "resultados.aspx?busca=" + txtFiltro.Text;
+
+            int codigoCategoria = int.Parse(ddlCategorias.SelectedValue);
+            if (codigoCategoria != -1)
+            {
+                Response.Redirect(urlcaminho + "&categoria=" + codigoCategoria);
+                Response.End();
+            }
+
+            if (txtFiltro.Text.Trim().Length == 0)
+            {
+                return;
+            }
+            else
+            {
+                Response.Redirect(urlcaminho);
+                Response.End();
+            }
+        }
+
+        // Carrega as categorias no dropdown
         private void CarregarCategorias()
         {
             var controller = new CategoriaController();
@@ -50,11 +73,13 @@ namespace BibliotecaWeb
             }
         }
 
+        // Executa a pesquisa de livros
         private void CarregarPesquisaLivro()
         {
+            int codigoCategoria = int.Parse(ddlCategorias.SelectedValue);
             string paramBusca = Request["busca"].ToString();
             var livroController = new LivroController();
-            var resultados = livroController.PesquisarLivros(paramBusca);
+            var resultados = livroController.PesquisarLivros(paramBusca, codigoCategoria);
 
             if (resultados.Count >= 1)
             {
@@ -67,18 +92,19 @@ namespace BibliotecaWeb
                 }
                 litListaLivro.Text = htmlBuilder.ToString();
             }
-
             else
+            {
                 NoneResultados(paramBusca);
-
-
+            }
         }
-        
-        private string NoneResultados(string paramBusca)
+
+        // Exibe mensagem de nenhum resultado
+        private void NoneResultados(string paramBusca)
         {
-            return $@"<p>Não encontramos nenhum livro relacionado a {paramBusca}</p>";
+            litListaLivro.Text = $@"<h2>Não encontramos nenhum livro relacionado a ""{paramBusca}""</h2>";
         }
 
+        // Obtém nomes dos autores formatados
         private string ObterNomesAutores(List<Autor> autores)
         {
             var nomesAutores = new List<string>();
@@ -89,9 +115,9 @@ namespace BibliotecaWeb
             return string.Join(", ", nomesAutores);
         }
 
+        // Cria HTML do card do livro
         private string CriarCardLivro(Livro livro, string autores)
         {
-
             return $@"<div class=""livro"">
                         <a href=""livro.aspx?busca={livro.Codigo}"">
                             <div class=""box-livro sombra"">
@@ -104,6 +130,5 @@ namespace BibliotecaWeb
                         </a>
                     </div>";
         }
-
     }
 }

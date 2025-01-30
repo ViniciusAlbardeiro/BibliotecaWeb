@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Web;
 using System.Web.UI.WebControls;
 
 namespace BibliotecaWeb
@@ -11,6 +12,18 @@ namespace BibliotecaWeb
         {
             CarregarCategorias();
             CarregarLivros();
+        }
+        protected void pesquisar_Click(object sender, EventArgs e)
+        {
+            if (txtFiltro.Text.Trim().Length == 0)
+            {
+                return;
+            }
+            else
+            {
+                Response.Redirect("resultados.aspx?busca=" + Server.UrlEncode(txtFiltro.Text));
+                Response.End();
+            }
         }
 
         private void CarregarCategorias()
@@ -34,8 +47,14 @@ namespace BibliotecaWeb
         {
             var livroController = new LivroController();
             var livros = livroController.Listar();
-            var htmlBuilder = new StringBuilder();
 
+            if (livros == null || livros.Count == 0)
+            {
+                litListaLivro.Text = "<p>Nenhum livro encontrado.</p>";
+                return;
+            }
+
+            var htmlBuilder = new StringBuilder();
             foreach (var livro in livros)
             {
                 var autores = ObterNomesAutores(livro.Autores);
@@ -45,8 +64,14 @@ namespace BibliotecaWeb
             litListaLivro.Text = htmlBuilder.ToString();
         }
 
+
         private string ObterNomesAutores(List<Autor> autores)
         {
+            if (autores == null || autores.Count == 0)
+            {
+                return "Autor desconhecido";
+            }
+
             var nomesAutores = new List<string>();
             foreach (var autor in autores)
             {
@@ -55,19 +80,23 @@ namespace BibliotecaWeb
             return string.Join(", ", nomesAutores);
         }
 
+
         private string CriarCardLivro(Livro livro, string autores)
         {
+            string nomeLivro = HttpUtility.HtmlEncode(livro.Nome);
+            string nomeAutores = HttpUtility.HtmlEncode(autores);
+
             return $@"<div class=""livro"">
-                        <a href=""livro.aspx?c={livro.Codigo}"">
-                            <div class=""box-livro sombra"">
-                                <img src=""images/{livro.Codigo}.jpg"" alt=""Capa do livro {livro.Nome}""/>
-                                <div class=""dados-livro"">
-                                    <p class=""titulo-livro"">{livro.Nome}</p>
-                                    <p class=""autor-livro"">{autores}</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>";
+                <a href=""livro.aspx?c={livro.Codigo}"">
+                    <div class=""box-livro sombra"">
+                        <img src=""images/{livro.Codigo}.jpg"" alt=""Capa do livro {nomeLivro}""/>
+                        <div class=""dados-livro"">
+                            <p class=""titulo-livro"">{nomeLivro}</p>
+                            <p class=""autor-livro"">{nomeAutores}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>";
         }
     }
 }

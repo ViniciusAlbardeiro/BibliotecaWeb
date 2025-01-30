@@ -20,7 +20,7 @@
                 <section class="area-busca sombra">
                     <asp:DropDownList ID="ddlCategorias" runat="server"></asp:DropDownList>
                     <asp:TextBox ID="txtFiltro" runat="server"></asp:TextBox>
-                    <asp:LinkButton ID="pesquisar"  runat="server">
+                    <asp:LinkButton ID="pesquisar"  runat="server" OnClick="pesquisar_Click">
                         <img src="images/Buscar.png" />
                     </asp:LinkButton>
                 </section>

@@ -65,9 +65,12 @@ public class LivroController
         return livrosCadastrados;
     }
 
-    public List<Livro> PesquisarLivros(string param)
+    public List<Livro> PesquisarLivros(string param, int codigoCategoria)
     {
-        string query = $@"SELECT 
+
+        if (codigoCategoria == -1)
+        {
+            string query = $@"SELECT 
                             l.cd_livro, l.nm_livro, l.cd_ISBN,
                             l.ds_sinopse, e.nm_editora,
                             group_concat(a.nm_autor separator ',') as autores
@@ -83,10 +86,34 @@ public class LivroController
                             or
                             l.ds_sinopse like '%{param}%'
                         group by l.cd_livro";
+            List<Livro> resultadoPesquisaLivro = Livros(query);
+            return resultadoPesquisaLivro;
 
-        List<Livro> resultadoPesquisaLivro = Livros(query);
+        }
 
-        return resultadoPesquisaLivro;
+        else
+        {
+            string query = $@"SELECT 
+                            l.cd_livro, l.nm_livro, l.cd_ISBN,
+                            l.ds_sinopse, e.nm_editora,
+                            group_concat(a.nm_autor separator ',') as autores
+                        FROM livro l 
+                        JOIN categoria c ON (l.cd_categoria = c.cd_categoria)
+                        JOIN editora e ON (l.cd_editora = e.cd_editora)
+                        JOIN livro_autor la ON (l.cd_livro = la.cd_livro)
+                        JOIN autor a ON (a.cd_autor = la.cd_autor)
+                        WHERE l.nm_livro like '%{param}%' 
+                            or
+                            a.nm_autor like '%{param}%'
+                            or
+                            e.nm_editora like '%{param}%'
+                            or
+                            l.ds_sinopse like '%{param}%'
+                        group by l.cd_livro
+                        and cd_categoria = {codigoCategoria}";
+            List<Livro> resultadoPesquisaLivro = Livros(query);
+            return resultadoPesquisaLivro;
+        }
     }
 
     public Livro DetalhesLivro(int codigo)
