@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -69,16 +70,28 @@ namespace BibliotecaWeb
 
         protected void pesquisar_Click(object sender, EventArgs e)
         {
-            if (txtFiltro.Text.Trim().Length == 0)
+            string urlcaminho = "resultados.aspx?busca=" + HttpUtility.UrlEncode(txtFiltro.Text.Trim());
+
+            int codigoCategoria;
+            if (int.TryParse(ddlCategorias.SelectedValue, out codigoCategoria) && codigoCategoria != -1)
             {
-                return;
+                urlcaminho += "&categoria=" + codigoCategoria;
             }
-            else
+
+            if (!string.IsNullOrWhiteSpace(txtFiltro.Text))
             {
-                Response.Redirect("resultados.aspx?busca=" + txtFiltro.Text);
+                Response.Redirect(urlcaminho);
                 Response.End();
             }
         }
 
+
+
+
+
+
+
+
     }
 }
+    

@@ -15,16 +15,21 @@ namespace BibliotecaWeb
         }
         protected void pesquisar_Click(object sender, EventArgs e)
         {
-            if (txtFiltro.Text.Trim().Length == 0)
+            string urlcaminho = "resultados.aspx?busca=" + HttpUtility.UrlEncode(txtFiltro.Text.Trim());
+
+            int codigoCategoria;
+            if (int.TryParse(ddlCategorias.SelectedValue, out codigoCategoria) && codigoCategoria != -1)
             {
-                return;
+                urlcaminho += "&categoria=" + codigoCategoria;
             }
-            else
+
+            if (!string.IsNullOrWhiteSpace(txtFiltro.Text))
             {
-                Response.Redirect("resultados.aspx?busca=" + Server.UrlEncode(txtFiltro.Text));
+                Response.Redirect(urlcaminho);
                 Response.End();
             }
         }
+
 
         private void CarregarCategorias()
         {

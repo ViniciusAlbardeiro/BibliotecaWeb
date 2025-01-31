@@ -65,10 +65,10 @@ public class LivroController
         return livrosCadastrados;
     }
 
-    public List<Livro> PesquisarLivros(string param, int codigoCategoria)
+    public List<Livro> PesquisarLivros(string param, string codigoCategoria)
     {
 
-        if (codigoCategoria == -1)
+        if (codigoCategoria == "-1")
         {
             string query = $@"SELECT 
                             l.cd_livro, l.nm_livro, l.cd_ISBN,
