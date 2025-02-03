@@ -15,7 +15,7 @@ namespace BibliotecaWeb
         }
         protected void pesquisar_Click(object sender, EventArgs e)
         {
-            string urlcaminho = "resultados.aspx?busca=" + HttpUtility.UrlEncode(txtFiltro.Text.Trim());
+            string urlcaminho = "resultados.aspx?busca=" + HttpUtility.UrlEncode(txtFiltro.Text);
 
             int codigoCategoria;
             if (int.TryParse(ddlCategorias.SelectedValue, out codigoCategoria) && codigoCategoria != -1)

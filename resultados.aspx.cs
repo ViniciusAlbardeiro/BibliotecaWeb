@@ -24,13 +24,14 @@ namespace BibliotecaWeb
             
 
             CarregarCategorias();
-            
+            CarregarPesquisaLivro();
+
         }
 
         // Evento de clique do botão de pesquisa
         protected void pesquisar_Click(object sender, EventArgs e)
         {
-            string urlcaminho = "resultados.aspx?busca=" + HttpUtility.UrlEncode(txtFiltro.Text.Trim());
+            string urlcaminho = "resultados.aspx?busca=" + HttpUtility.UrlEncode(txtFiltro.Text);
 
             int codigoCategoria;
             if (int.TryParse(ddlCategorias.SelectedValue, out codigoCategoria) && codigoCategoria != -1)
@@ -38,47 +39,22 @@ namespace BibliotecaWeb
                 urlcaminho += "&categoria=" + codigoCategoria;
             }
 
+            Response.Redirect($@"resultados.aspx?busca={txtFiltro.Text}&");
+
             if (!string.IsNullOrWhiteSpace(txtFiltro.Text))
             {
                 Response.Redirect(urlcaminho);
                 Response.End();
             }
-
-
-            if (txtFiltro.Text.Trim().Length == 0)
-            {
-                return;
-            }
-            if (txtFiltro.Text.Trim().Length > 0)
-            {
-                Response.Redirect(urlcaminho);
-                Response.End();
-            }
-            if (String.IsNullOrEmpty(Request["categoria"].ToString()))
-            {
-                Response.Redirect("");
-                Response.End();
-                return;
-            }
-            if (Request["busca"] == null)
-            {
-                Response.Redirect("");
-                Response.End();
-                return;
-            }
-
-            // Verifica se o parâmetro de busca não está vazio
-            if (String.IsNullOrEmpty(Request["categoria"].ToString()))
-            {
-                Response.Redirect("");
-                Response.End();
-                return;
-            }
-            CarregarPesquisaLivro();
         }
         private void CarregarPesquisaLivro()
         {
-            string codigoCategoria = Request["categoria"].ToString();
+
+            string codigoCategoria;
+            if (Request["categoria"] != null)
+                codigoCategoria = Request["categoria"].ToString();
+            else
+                codigoCategoria = "-1";
             string paramBusca = Request["busca"].ToString();
 
             var livroController = new LivroController();
