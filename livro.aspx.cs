@@ -70,19 +70,9 @@ namespace BibliotecaWeb
 
         protected void pesquisar_Click(object sender, EventArgs e)
         {
-            string urlcaminho = "resultados.aspx?busca=" + HttpUtility.UrlEncode(txtFiltro.Text);
-
-            int codigoCategoria;
-            if (int.TryParse(ddlCategorias.SelectedValue, out codigoCategoria) && codigoCategoria != -1)
-            {
-                urlcaminho += "&categoria=" + codigoCategoria;
-            }
-
-            if (!string.IsNullOrWhiteSpace(txtFiltro.Text))
-            {
-                Response.Redirect(urlcaminho);
-                Response.End();
-            }
+            string urlcaminho = $@"resultados.aspx?f={txtFiltro.Text}&c={ddlCategorias.SelectedItem.Value.ToString()}";
+            Response.Redirect(urlcaminho);
+            Response.End();
         }
 
 

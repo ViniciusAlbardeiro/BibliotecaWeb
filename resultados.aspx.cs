@@ -13,7 +13,7 @@ namespace BibliotecaWeb
         protected void Page_Load(object sender, EventArgs e)
         {
             // Verifica se o parâmetro de busca existe
-            if (Request["busca"] == null)
+            if (Request["f"] == null)
             {
                 Response.Redirect("");
                 Response.End();
@@ -21,45 +21,45 @@ namespace BibliotecaWeb
             }
 
             // Verifica se o parâmetro de busca não está vazio
-            
 
-            CarregarCategorias();
-            CarregarPesquisaLivro();
+            if (!IsPostBack)
+            {
+                CarregarCategorias();
+                CarregarPesquisaLivro();
+            }
+           
+            
 
         }
 
         // Evento de clique do botão de pesquisa
         protected void pesquisar_Click(object sender, EventArgs e)
         {
-            string urlcaminho = "resultados.aspx?busca=" + HttpUtility.UrlEncode(txtFiltro.Text);
-
-            int codigoCategoria;
-            if (int.TryParse(ddlCategorias.SelectedValue, out codigoCategoria) && codigoCategoria != -1)
-            {
-                urlcaminho += "&categoria=" + codigoCategoria;
-            }
-
-            Response.Redirect($@"resultados.aspx?busca={txtFiltro.Text}&");
-
-            if (!string.IsNullOrWhiteSpace(txtFiltro.Text))
-            {
-                Response.Redirect(urlcaminho);
-                Response.End();
-            }
+            string urlcaminho = $@"resultados.aspx?f={txtFiltro.Text}&c={ddlCategorias.SelectedItem.Value.ToString()}";
+            Response.Redirect(urlcaminho);
+            Response.End();
         }
         private void CarregarPesquisaLivro()
         {
+            if (Request["f"] == null)
+            {
+                Response.Redirect("");
+                Response.End();
+                return;
+            }
+            if (Request["c"] == null)
+            {
+                Response.Redirect("");
+                Response.End();
+                return;
+            }
 
-            string codigoCategoria;
-            if (Request["categoria"] != null)
-                codigoCategoria = Request["categoria"].ToString();
-            else
-                codigoCategoria = "-1";
-            string paramBusca = Request["busca"].ToString();
+            string codigoCategoria = Request["c"].ToString();
+            string paramBusca = Request["f"].ToString();
 
             var livroController = new LivroController();
             var resultados = livroController.PesquisarLivros(paramBusca, codigoCategoria);
-
+ 
             if (resultados.Count >= 1)
             {
                 var htmlBuilder = new StringBuilder();
@@ -74,6 +74,7 @@ namespace BibliotecaWeb
             {
                 NoneResultados(paramBusca);
             }
+
         }
 
         // Carrega as categorias no dropdown

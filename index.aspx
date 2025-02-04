@@ -19,7 +19,7 @@
                 </div>
                 
                 <section class="area-busca sombra">
-                    <asp:DropDownList ID="ddlCategorias" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCategorias_SelectedIndexChanged">
+                    <asp:DropDownList ID="ddlCategorias" runat="server">
 </asp:DropDownList>
 
                     <asp:TextBox ID="txtFiltro" runat="server"></asp:TextBox>
@@ -30,7 +30,7 @@
                 
                 <section class="area-user">
                     <div class="id-usuario">
-                        <p>
+                        <p> 
                             Olá, bem vindo(a)!<br />
                             <span class="link-login">Entre ou cadastre-se</span>
                         </p>

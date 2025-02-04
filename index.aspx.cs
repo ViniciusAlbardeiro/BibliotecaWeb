@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Web;
 using System.Web.UI.WebControls;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace BibliotecaWeb
 {
@@ -10,24 +12,27 @@ namespace BibliotecaWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            CarregarCategorias();
-            CarregarLivros();
+        
+            if (!IsPostBack)
+            {
+                CarregarCategorias();
+                CarregarLivros();
+            }
+        
+
         }
         protected void pesquisar_Click(object sender, EventArgs e)
         {
-            string urlcaminho = "resultados.aspx?busca=" + HttpUtility.UrlEncode(txtFiltro.Text);
 
-            int codigoCategoria;
-            if (int.TryParse(ddlCategorias.SelectedValue, out codigoCategoria) && codigoCategoria != -1)
-            {
-                urlcaminho += "&categoria=" + codigoCategoria;
-            }
+            string selectedValue = ddlCategorias.SelectedItem.Value;
+            string selectedText = ddlCategorias.SelectedItem.Text;
 
-            if (!string.IsNullOrWhiteSpace(txtFiltro.Text))
-            {
-                Response.Redirect(urlcaminho);
-                Response.End();
-            }
+            // Para depuração
+            Debug.WriteLine($"Selected Value: {selectedValue}, Selected Text: {selectedText}");
+
+            string urlcaminho = $@"resultados.aspx?f={txtFiltro.Text}&c={ddlCategorias.SelectedItem.Value.ToString()}";
+            Response.Redirect(urlcaminho);
+            Response.End();
         }
 
 
@@ -39,7 +44,7 @@ namespace BibliotecaWeb
             ddlCategorias.Items.Clear();
             ddlCategorias.Items.Add(new ListItem("Todos", "-1"));
 
-            foreach (var categoria in categorias)
+            foreach (Categoria categoria in categorias)
             {
                 ddlCategorias.Items.Add(new ListItem(
                     categoria.Nome,
