@@ -97,7 +97,7 @@ namespace BibliotecaWeb
             string nomeAutores = HttpUtility.HtmlEncode(autores);
 
             return $@"<div class=""livro"">
-                <a href=""livro.aspx?c={livro.Codigo}"">
+                <a href=""livro.aspx?cl={livro.Codigo}"">
                     <div class=""box-livro sombra"">
                         <img src=""images/{livro.Codigo}.jpg"" alt=""Capa do livro {nomeLivro}""/>
                         <div class=""dados-livro"">

@@ -72,7 +72,7 @@ namespace BibliotecaWeb
             }
             else
             {
-                NoneResultados(paramBusca);
+                NoneResultados();
             }
 
         }
@@ -99,7 +99,7 @@ namespace BibliotecaWeb
 
 
         // Exibe mensagem de nenhum resultado
-        private void NoneResultados(string paramBusca)
+        private void NoneResultados()
         {
             litListaLivro.Text = $@"<h2>Não encontramos nenhum livro relacionado à pesquisa</h2>";
         }
@@ -119,7 +119,7 @@ namespace BibliotecaWeb
         private string CriarCardLivro(Livro livro, string autores)
         {
             return $@"<div class=""livro"">
-                        <a href=""livro.aspx?busca={livro.Codigo}"">
+                        <a href=""livro.aspx?cl={livro.Codigo}"">
                             <div class=""box-livro sombra"">
                                 <img src=""images/{livro.Codigo}.jpg"" alt=""Capa do livro {livro.Nome}""/>
                                 <div class=""dados-livro"">

@@ -68,9 +68,11 @@ public class LivroController
     public List<Livro> PesquisarLivros(string param, string codigoCategoria)
     {
 
-        if (codigoCategoria == "-1")
-        {
-            string query = $@"SELECT 
+        if (codigoCategoria == "-1" )
+        { 
+            if (!string.IsNullOrWhiteSpace(param))
+            {
+                string query = $@"SELECT 
                             l.cd_livro, l.nm_livro, l.cd_ISBN,
                             l.ds_sinopse, e.nm_editora,
                             group_concat(a.nm_autor separator ',') as autores
@@ -86,14 +88,22 @@ public class LivroController
                             or
                             l.ds_sinopse like '%{param}%'
                         group by l.cd_livro";
-            List<Livro> resultadoPesquisaLivro = Livros(query);
-            return resultadoPesquisaLivro;
+                List<Livro> resultadoPesquisaLivro = Livros(query);
+                return resultadoPesquisaLivro;
+            }
+            else
+            {
+                return Listar();
+            }
+        
 
         }
 
-        if (string.IsNullOrWhiteSpace(param) & codigoCategoria != "-1")
+        else
         {
-            string query = $@"SELECT 
+            if (string.IsNullOrWhiteSpace(param))
+            {
+                string query = $@"SELECT 
                                 l.cd_livro, 
                                 l.nm_livro, 
                                 l.cd_ISBN, 
@@ -107,35 +117,47 @@ public class LivroController
                             JOIN editora e ON l.cd_editora = e.cd_editora
                             JOIN livro_autor la ON l.cd_livro = la.cd_livro
                             JOIN autor a ON a.cd_autor = la.cd_autor
-                            WHERE lc.cd_categoria = 1
+                            WHERE lc.cd_categoria = {codigoCategoria}
                             GROUP BY l.cd_livro, l.nm_livro, l.cd_ISBN, l.ds_sinopse, e.nm_editora;
                             ";
-            List<Livro> resultadoPesquisaLivro = Livros(query);
-            return resultadoPesquisaLivro;
+                List<Livro> resultadoPesquisaLivro = Livros(query);
+                return resultadoPesquisaLivro;
+            }
+            else
+            {
+                string query = $@"SELECT 
+	                                    l.cd_livro, 
+	                                    l.nm_livro, 
+	                                    l.cd_ISBN, 
+	                                    l.ds_sinopse, 
+	                                    e.nm_editora,
+	                                    lc.cd_categoria,
+	                                    GROUP_CONCAT(a.nm_autor SEPARATOR ', ') AS autores
+                                    FROM livro l
+                                    JOIN livro_categoria lc ON l.cd_livro = lc.cd_livro
+                                    JOIN categoria c ON c.cd_categoria = lc.cd_categoria
+                                    JOIN editora e ON l.cd_editora = e.cd_editora
+                                    JOIN livro_autor la ON l.cd_livro = la.cd_livro
+                                    JOIN autor a ON a.cd_autor = la.cd_autor
+                                    WHERE lc.cd_categoria = {codigoCategoria} 
+                                    AND (
+                                        l.nm_livro LIKE '%{param}%' 
+                                        OR a.nm_autor LIKE '%{param}%'
+                                        OR l.ds_sinopse LIKE '%{param}%'
+                                    )
+                                    GROUP BY l.cd_livro;
+                                    ";
+
+
+
+                List<Livro> resultadoPesquisaLivro = Livros(query);
+                return resultadoPesquisaLivro;
+
+            }
         }
-        else
-        {
-            string query = $@"SELECT 
-                            l.cd_livro, l.nm_livro, l.cd_ISBN,
-                            l.ds_sinopse, e.nm_editora,
-                            group_concat(a.nm_autor separator ',') as autores
-                        FROM livro l 
-                        JOIN editora e ON (l.cd_editora = e.cd_editora)
-                        JOIN livro_autor la ON (l.cd_livro = la.cd_livro)
-                        JOIN autor a ON (a.cd_autor = la.cd_autor)
-                        WHERE l.nm_livro like '%{param}%' 
-                            or
-                            a.nm_autor like '%{param}%'
-                            or
-                            e.nm_editora like '%{param}%'
-                            or
-                            l.ds_sinopse like '%{param}%'
-                        group by l.cd_livro
-                        and cd_categoria = {codigoCategoria}";
-                        
-            List<Livro> resultadoPesquisaLivro = Livros(query);
-            return resultadoPesquisaLivro;
-        }
+            
+
+
     }
 
     public Livro DetalhesLivro(int codigo)

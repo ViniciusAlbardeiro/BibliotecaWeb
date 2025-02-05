@@ -14,14 +14,14 @@ namespace BibliotecaWeb
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (Request["c"] == null)
+            if (Request["cl"] == null)
             {
                 Response.Redirect("");
                 Response.End();
                 return;
             }
 
-            if (String.IsNullOrEmpty(Request["c"].ToString()))
+            if (String.IsNullOrEmpty(Request["cl"].ToString()))
             {
                 Response.Redirect("");
                 Response.End();
@@ -30,7 +30,7 @@ namespace BibliotecaWeb
 
 
             
-            int codigo = Convert.ToInt32(Request["c"].ToString());
+            int codigo = Convert.ToInt32(Request["cl"].ToString());
 
 
             CategoriaController categoriaController = new CategoriaController();
