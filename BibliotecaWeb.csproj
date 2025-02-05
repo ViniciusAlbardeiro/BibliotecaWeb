@@ -191,6 +191,7 @@
     <Content Include="images\User.png" />
     <Content Include="index.aspx" />
     <Content Include="livro.aspx" />
+    <Content Include="login.aspx" />
     <Content Include="obj\Debug\BibliotecaWeb.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\BibliotecaWeb.dll" />
     <Content Include="obj\Debug\BibliotecaWeb.pdb" />
@@ -260,10 +261,12 @@
     <Compile Include="classes\base\Banco.cs" />
     <Compile Include="classes\controllers\CategoriaController.cs" />
     <Compile Include="classes\controllers\LivroController.cs" />
+    <Compile Include="classes\controllers\UsuarioController.cs" />
     <Compile Include="classes\models\Autor.cs" />
     <Compile Include="classes\models\Categoria.cs" />
     <Compile Include="classes\models\Editora.cs" />
     <Compile Include="classes\models\Livro.cs" />
+    <Compile Include="classes\models\Usuario.cs" />
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -277,6 +280,13 @@
     </Compile>
     <Compile Include="livro.aspx.designer.cs">
       <DependentUpon>livro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
     </Compile>
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
