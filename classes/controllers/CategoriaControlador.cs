@@ -8,9 +8,9 @@ using MySql.Data.MySqlClient;
 
 
 
-public class CategoriaController
+public class CategoriaControlador
 {
-    public CategoriaController()
+    public CategoriaControlador()
     {
     }
 

@@ -57,7 +57,7 @@ namespace BibliotecaWeb
             string codigoCategoria = Request["c"].ToString();
             string paramBusca = Request["f"].ToString();
 
-            var livroController = new LivroController();
+            var livroController = new LivroControlador();
             var resultados = livroController.PesquisarLivros(paramBusca, codigoCategoria);
  
             if (resultados.Count >= 1)
@@ -80,7 +80,7 @@ namespace BibliotecaWeb
         // Carrega as categorias no dropdown
         private void CarregarCategorias()
         {
-            var controller = new CategoriaController();
+            var controller = new CategoriaControlador();
             var categorias = controller.Listar();
 
             ddlCategorias.Items.Clear();

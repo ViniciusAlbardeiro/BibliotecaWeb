@@ -4,7 +4,7 @@ using System.Runtime.Remoting.Messaging;
 using BibliotecaWeb;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI;
-public class LivroController
+public class LivroControlador
 {
 
     private Banco banco = new Banco();

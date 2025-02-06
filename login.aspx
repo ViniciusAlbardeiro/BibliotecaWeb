@@ -18,13 +18,17 @@
             <div class="card p-4 shadow-lg rounded" style="width: 350px;">
                 <div class="card-body text-center">
                     <h2 class="text-primary">Login</h2>
+                    <asp:Literal ID="litMensagem" runat="server" />
                     <div class="mb-3">
-                        <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control" placeholder="Usuário"></asp:TextBox>
+                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Email"></asp:TextBox>
                     </div>
                     <div class="mb-3">
                         <asp:TextBox ID="txtSenha" runat="server" CssClass="form-control" TextMode="Password" placeholder="Senha"></asp:TextBox>
                     </div>
-                    <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary w-100" Text="Entrar" />
+                    <asp:LinkButton ID="btnLogin" runat="server" CssClass="btn btn-primary w-100" OnClick="btnLogin_Click">Entrar</asp:LinkButton>
+                    
+
+                    <p><a href="#" class="link-dark">É novo aqui? Cadastre-se</a></p>
                 </div>
             </div>
         </div>

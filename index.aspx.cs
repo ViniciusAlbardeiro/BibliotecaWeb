@@ -38,7 +38,7 @@ namespace BibliotecaWeb
 
         private void CarregarCategorias()
         {
-            var controller = new CategoriaController();
+            var controller = new CategoriaControlador();
             var categorias = controller.Listar();
 
             ddlCategorias.Items.Clear();
@@ -55,7 +55,7 @@ namespace BibliotecaWeb
 
         private void CarregarLivros()
         {
-            var livroController = new LivroController();
+            var livroController = new LivroControlador();
             var livros = livroController.Listar();
 
             if (livros == null || livros.Count == 0)

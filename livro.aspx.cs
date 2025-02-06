@@ -33,7 +33,7 @@ namespace BibliotecaWeb
             int codigo = Convert.ToInt32(Request["cl"].ToString());
 
 
-            CategoriaController categoriaController = new CategoriaController();
+            CategoriaControlador categoriaController = new CategoriaControlador();
             List<Categoria> lista = categoriaController.Listar();
             ddlCategorias.Items.Add(new ListItem("Todos", "-1"));
 
@@ -45,7 +45,7 @@ namespace BibliotecaWeb
 
 
             /* livro */
-            LivroController livroController = new LivroController();
+            LivroControlador livroController = new LivroControlador();
             Livro livro = livroController.DetalhesLivro(codigo);
 
             string nomesAutores = "";
