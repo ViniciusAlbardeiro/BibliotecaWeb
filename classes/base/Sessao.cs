@@ -6,27 +6,26 @@ using System.Web.UI.WebControls;
 
 public class Sessao
 {
-    public void CriarSessao(Usuario usuario)
+    public void CriarSessao(HttpSessionStateBase session, Usuario usuario)
     {
-        Dictionary <string, string>dados = new Dictionary<string, string>();
-        dados.Add("cd_usuario", usuario.Codigo.ToString());
-        dados.Add("nm_usuario", usuario.Nome);
-        dados.Add("email", usuario.Email);
-        dados.Add("usuarioLogado", "true");
-
+        session["user"] = usuario;
     }
 
-    public void DestruirSessao(Dictionary<string, string> dados)
+    public void DestruirSessao(HttpSessionStateBase session)
     {
-        if (dados.ContainsValue("true")) dados.Clear();
+        if (session["user"] != null)
+            session.Remove("user");
     }
 
-    public Usuario GetSessao(Dictionary<string, string> dados)
+    public Usuario GetSessao(HttpSessionStateBase session)
     {
-        Usuario usuario = new Usuario();
-        if (dados.ContainsKey("cd_usuario")) usuario.Codigo = Convert.ToInt32(dados["cd_usuario"]);
-        if (dados.ContainsKey("nm_usuario")) usuario.Nome = dados["nm_usuario"];
-        if (dados.ContainsKey("email")) usuario.Email = dados["email"];
-        return usuario;
+        if (session["user"] != null)
+        {     
+            Usuario usuario = (Usuario)session["user"];
+
+            return usuario;
+        }
+        else
+            return null;
     }
 }

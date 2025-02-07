@@ -29,8 +29,7 @@ namespace BibliotecaWeb
                 Usuario usuario = usuarioControlador.Login(txtEmail.Text, txtSenha.Text);
                 if (usuario != null)
                 {
-                    Sessao sessao = new Sessao();
-                    sessao.CriarSessao(usuario);
+                    Session["user"] = usuario;
                     Response.Redirect("index.aspx");
                 }
                 else

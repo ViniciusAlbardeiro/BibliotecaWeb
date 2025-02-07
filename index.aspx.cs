@@ -12,7 +12,16 @@ namespace BibliotecaWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-        
+            if (Session["user"] == null)
+            {
+                Response.Redirect("login.aspx");
+            }
+            else
+            {
+                Usuario usuario = (Usuario)Session["user"];
+                litLinkMeuPerfil.Text = usuario.Nome;
+            }
+
             if (!IsPostBack)
             {
                 CarregarCategorias();
@@ -32,6 +41,12 @@ namespace BibliotecaWeb
 
             string urlcaminho = $@"resultados.aspx?f={txtFiltro.Text}&c={ddlCategorias.SelectedItem.Value.ToString()}";
             Response.Redirect(urlcaminho);
+            Response.End();
+        }
+
+        protected void linkMeuPerfil_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("perfil.aspx");
             Response.End();
         }
 
